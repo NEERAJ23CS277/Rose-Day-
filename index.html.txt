@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Rose Day AARTI 🌹</title>
+
+<style>
+body {
+    margin: 0;
+    background: black;
+    overflow: hidden;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* Center container */
+.container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+/* Typing text */
+#typing {
+    color: pink;
+    font-size: 34px;
+    font-weight: bold;
+    white-space: nowrap;
+    border-right: 3px solid pink;
+    padding-right: 6px;
+    animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+    50% { border-color: transparent; }
+}
+
+/* Falling petals */
+.falling-petal {
+    position: absolute;
+    top: -50px;
+    font-size: 26px;
+    animation: fall linear infinite;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh) rotate(360deg);
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <div id="typing"></div>
+</div>
+
+<script>
+/* Falling rose petals */
+function createFallingPetal() {
+    const petal = document.createElement("div");
+    petal.className = "falling-petal";
+    petal.innerHTML = "🌹";
+    petal.style.left = Math.random() * window.innerWidth + "px";
+    petal.style.animationDuration = (4 + Math.random() * 4) + "s";
+    document.body.appendChild(petal);
+
+    setTimeout(() => petal.remove(), 8000);
+}
+setInterval(createFallingPetal, 300);
+
+/* Typing animation */
+const text = "🌹 Happy Rose Day AARTI 🌹";
+let index = 0;
+const typingDiv = document.getElementById("typing");
+
+function typeText() {
+    if (index < text.length) {
+        typingDiv.textContent += text.charAt(index);
+        index++;
+        setTimeout(typeText, 120);
+    }
+}
+typeText();
+</script>
+
+</body>
+</html>
